@@ -6,6 +6,6 @@ function Acessar(){
         alert("Preencha Por favor");
 
     }else{
-       var calcu = window.open("Escolha.html")
+       var calcu = window.open("vendas.html")
     }
 }

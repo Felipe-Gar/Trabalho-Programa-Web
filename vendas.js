@@ -1,27 +1,54 @@
-var  tabela  =  [ ] ;
-function  Lancar ()  {
+var nomeProdutos = [];
+var valorProdutos = [];
+var formaPagamentos = [];
+var dadosLista 
 
-    var  produto  =  document . getElementById ( "produto" ) . valor ;
-    var  valor  =  document . getElementById ( "valor" ) . valor ;
-    var  forma  =  document . getElementById ( "forma" ) . valor ;
 
-    if ( Lancar()) {
-     tabela. push ( produto ) ;
-    Lancar( ) ;
-    documento.getElementById ( "produto" ) . valor  =  "" ;
-    }  else  {
-        alert ( "Usuário favor preencher o campo nome" ) ;
+function Lancar() {
+    let NomedoProduto = document.getElementById('produto').value;
+    let ValordoProduto = document.getElementById('valor').value;
+    let FormadePagamento = document.getElementById('forma').value;
+
+    if (NomedoProduto && ValordoProduto && FormadePagamento) {
+        nomeProdutos.push(NomedoProduto)
+        valorProdutos.push(ValordoProduto)
+        formaPagamentos.push(FormadePagamento)
+        let tbl = document.getElementById('tbl').innerHTML = "<tr><th>  Nome do Produto  </th><th>  Valor  </th><th>  Forma de Pagamento  </th></tr>"
+        for (dadosLista = 0 ; dadosLista <= (nomeProdutos.length - 1); dadosLista ++){
+            tbl += "<tr><td>" + nomeProdutos[dadosLista] + "</td><td>" + valorProdutos[dadosLista] + "</td><td>" + formaPagamentos[dadosLista] + "</td><td><button class='btn btn-success' onclick='editar(this.parentNode.parentNode.rowIndex)'>Editar</button> <button class='btn btn-danger' onclick='excluir(this.parentNode.parentNode.rowIndex)'>Excluir</button></td></tr>"
+            document.getElementById("tbl").innerHTML = tbl;
+
+
+        }
+
+      
+    }else{
+        alert ("Preencher todos os campos");
     }
+    document.getElementById("produto").value = ""
+    document.getElementById("valor").value =""
+    document.getElementById("forma").value = ""
+    document.getElementById("produto").focus()
+
+}
+function excluir(dadosLista){
+     valorProdutos.splice((dadosLista - 1), 1);
+     formaPagamentos.splice((dadosLista - 1), 1);
+     nomeProdutos.splice((dadosLista - 1), 1);
+     document.getElementById("tbl").deleteRom(dadosLista);
+}
+function editar(dadosLista) {
+    document.getElementById("NomedoProduto").value = nomeProdutos[(dadosLista -1)];
+    document.getElementById("ValordoProduto").value = valorProdutos[(dadosLista -1)];
+    document.getElementById("FormadePagamento").value = formaPagamentos[(dadosLista -1)];
+    nomeProdutos.splice(nomeProdutos[(dadosLista -1)], 1);
+    valorProdutos.splice(valorProdutos[(dadosLista -1)], 1);
+    formaPagamentos.splice(formaPagamentos[(dadosLista -1)], 1);
 }
 
-function  Lancar ( )  {
-    var  tabela  =  document.getElementById ( "Lancar" ) . innerHTML  =  "<tr> <th> Nome Usuario </th> <th> Ações </th> </tr>" ;
-    for ( var  i  =  0 ;  i  <=  ( dadosLista . comprimento  - 1 ) ;  i ++ ){
-        tabela  +=  "<tr> <td>"  +  dadosLista [ i ]  +  "</td> <td> <button class = 'btn btn-success' onclick = 'editar (this.parentNode.parentNode.rowIndex)'> Editar </button> <button class = 'btn btn-danger' onclick = 'excluir (this.parentNode.parentNode.rowIndex)'> Excluir </button> </td> </tr> " ;
-        documento.getElementById ( "Lancar" ) . innerHTML  =  tabela ;
-    }
-}
- 
+
+
+
 
 
 
